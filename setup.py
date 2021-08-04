@@ -9,7 +9,7 @@ setup(
     # Packages included
     packages=['bioacoustics'],
     # dependencies
-    install_requires=['numpy', 'xarray', 'intake', ],
+    install_requires=['numpy', 'xarray', 'intake', 'astral'],
     version='0.1',
     license='MIT',
     description='A package of tools to import and analyse bioacoustics data',

@@ -1,0 +1,4 @@
+# files to ignore in repo
+
+# compiled files
+__pycache__
