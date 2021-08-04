@@ -11,3 +11,4 @@ Acoustic data contains information about organisms in the scattering layers. For
 - Skylar Gering
 - Benjy Getraer
 - Kevin Mcgann
+- Angelika Renner
