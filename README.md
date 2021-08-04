@@ -8,4 +8,7 @@ Acoustic data contains information about organisms in the scattering layers. For
 ### Members (please add yourself)
 - Nick Mortimer (mentor)
 - Muriel Dunn
-- 
+- Skylar Gering
+- Benjy Getraer
+- Kevin Mcgann
+- Angelika Renner
