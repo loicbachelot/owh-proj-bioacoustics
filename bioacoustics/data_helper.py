@@ -38,18 +38,31 @@ def open_nc_file_from_S3(filepath):
   ds = xr.open_dataset(file_obj)
   return ds
 
+def search_imos_data_url(url=None):
+  try:
+    val = df[df['url'].str.contains(url)]
+  except:
+    print("url not found")
+    val = None
+  return val
+
+
+def mkd_temp_dir():
+  """Creates a local temporary directory in the current working directory to
+  download imos S3 data to.
+  Returns directory name"""
+  temp_dir_path = tempfile.mkdtemp()
+  print("tempory directory: ", temp_dir_path)
+  return temp_dir_path
 
 def download_imos_file_from_S3(file_list, dir_path):
+  """Download imos file into the dir_path directory"""
   fs = s3fs.S3FileSystem(anon=True)
   for filepath in filelist:
     filename = filepath.split('/')[0]
     fs.download(filepath, os.path.join(dir_path, filename))
 
-def mkd_temp_dir():
-  temp_dir_path = tempfile.mkdtemp()
-  print("tempory directory: ", temp_dir_path)
-  return temp_dir_path
-
 
 def remove_temp_dir(temp_dir_path):
+  """Delete tempory directory"""
   shutil.rmtree(temp_dir_path)
