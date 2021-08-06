@@ -7,26 +7,32 @@ import xarray as xr
 import tempfile
 import shutil
 
+from datetime import datetime
 from intake.source.utils import reverse_format
 
-
+dtstr = lambda t: datetime.strptime(t, "%Y%m%dT%H%M%SZ")
 
 def get_s3_imos_data(bucket="imos-data/IMOS/SOOP/SOOP-BA"):
-  """Returns a dataframe of all netcdf files in the S3 imos bucket"""
+  """Returns a dataframe of all netcdf files in the S3 imos bucket, with start and end
+  datetime stamps for searching between periods. Defaults to the S3 imos bucket."""
   data = []
   fs = s3fs.S3FileSystem(anon=True)
   for dirpath, dirname, filename in fs.walk(bucket):
     if len(filename) > 0:
       for _ in filename:
         if _.endswith(".nc"):
-          d = reverse_format('IMOS_SOOP-BA_AE_{start}_{platform_code}_FV02_{product_type}_END-{end}_C-{creation}.nc', _)
+          d = reverse_format('IMOS_SOOP-BA_AE_{start_date}_{platform_code}_FV02_{product_type}_END-{end_date}_C-{creation}.nc', _)
           d['url'] = "/".join([dirpath, _])
+          d['start_date'] = dtstr(d['start_date'])
+          d['end_date'] = dtstr(d['end_date'])
+          d['creation'] = dtstr(d['creation'])
           data.append(d)
   df = pd.DataFrame(data)
   return df
 
 def open_nc_file_from_S3(filepath):
-  """file path assumed to contain bucket name"""
+  """Open netCDF acoustic data file directly from S3 and return xarray dataset.
+  filepath assumed to contain bucket name"""
   fs = s3fs.S3FileSystem(anon=True)
   file_obj = fs.open(filepath)
   ds = xr.open_dataset(file_obj)
