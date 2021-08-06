@@ -3,11 +3,11 @@ Acoustic data contains information about organisms in the scattering layers. For
 
 ## Outcomes
 Outcomes are 2 notebooks:
-- One first notebook to convert any data into a proper netcdf format ready to use by the rest of the methode
+- One first notebook to convert any data into a proper netcdf format ready to use by the rest of the method
 - Second notebook is extracting the layers of interest from the data
 
 
-### Members (please add yourself)
+### Members
 - Nick Mortimer (mentor)
 - Muriel Dunn
 - Skylar Gering
@@ -15,3 +15,4 @@ Outcomes are 2 notebooks:
 - Kevin Mcgann
 - Angelika Renner
 - Loïc Bachelot
+- Chris Bladwell
