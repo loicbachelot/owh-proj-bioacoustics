@@ -15,3 +15,4 @@ Outcomes are 2 notebooks:
 - Kevin Mcgann
 - Angelika Renner
 - Loïc Bachelot
+- Chris Bladwell
